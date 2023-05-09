@@ -8,14 +8,14 @@ enum Menu {
   products(
     '/products/',
     'product_ico.png',
-    'product_ico_selected',
+    'product_ico_selected.png',
     'Administrar produtos',
   ),
   ordes(
     '/order/',
     'product_ico.png',
-    'product_ico_selected',
-    'Administrar produtos',
+    'product_ico_selected.png',
+    'Pedidos do dia',
   );
 
   final String route;
