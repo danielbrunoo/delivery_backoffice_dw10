@@ -36,14 +36,14 @@ class _HomePageState extends State<HomePage> with Loader, Messages {
                     autovalidateMode:  AutovalidateMode.onUserInteraction,
                     child: TextFormField(
                       decoration: const InputDecoration(label: Text('Login')),
-                      validator: (String) => 'Erro',
+                      validator: (string) => 'Erro',
                     ),
                   ),
                 ),
                 SizedBox(
                   width: 200,
                   height: 50,
-                  child: ElevatedButton(onPressed: () {}, child: Text('Botão'),
+                  child: ElevatedButton(onPressed: () {}, child: const Text('Botão'),
                     ),
                 ),
               ],
