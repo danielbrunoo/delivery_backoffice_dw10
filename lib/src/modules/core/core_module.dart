@@ -10,7 +10,7 @@ class CoreModule extends Module {
    List<Bind> get binds => [
     Bind.lazySingleton<Storage>((i) => SessionStorage(), export: true),
     Bind.lazySingleton((i) => CustomDio(i()), export: true),
-    Bind.lazySingleton<PaymentTypeRepository>((i) => PaymentTypeRepositoryImpl(i()),
+    Bind.lazySingleton<PaymentTypeRepository>((i) => PaymentTypeRepositoryImpl(dio: i()),
     export: true,
     ),
    ];

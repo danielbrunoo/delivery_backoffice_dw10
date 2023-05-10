@@ -8,14 +8,14 @@ import '../../models/payment_type_model.dart';
 import './payment_type_repository.dart';
 
 class PaymentTypeRepositoryImpl implements PaymentTypeRepository {
-  late final CustomDio _dio;
+  final CustomDio dio;
 
-  PaymentTypeRepositoryImpl(Object object);
+  PaymentTypeRepositoryImpl({required this. dio});
   @override
   Future<List<PaymentTypeModel>> findAll(bool? enabled) async {
     try {
-      final paymentResult = await _dio.auth().get(
-        '/payment-type',
+      final paymentResult = await dio.auth().get(
+        '/payment-types',
         queryParameters: {
           if (enabled != null) 'enable': enabled,
         },
@@ -32,8 +32,8 @@ class PaymentTypeRepositoryImpl implements PaymentTypeRepository {
   @override
   Future<PaymentTypeModel> getById(int id) async {
     try {
-      final paymentResult = await _dio.auth().get(
-            '/payment-type/$id',
+      final paymentResult = await dio.auth().get(
+            '/payment-types/$id',
           );
       return PaymentTypeModel.fromMap(paymentResult.data);
     } on DioError catch (e, s) {
@@ -46,7 +46,7 @@ class PaymentTypeRepositoryImpl implements PaymentTypeRepository {
   @override
   Future<void> save(PaymentTypeModel model) async {
     try {
-      final client = _dio.auth();
+      final client = dio.auth();
 
       if (model.id != null) {
         await client.put(

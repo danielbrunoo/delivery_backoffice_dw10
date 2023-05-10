@@ -21,7 +21,7 @@ class PaymentTypeItem extends StatelessWidget {
           children: [
             Image.asset(
                 'assets/images/icons/payment_${payment.acronym}_icon.png',
-                errorBuilder: (context, error, StackTrace) {
+                errorBuilder: (context, error, stackTrace) {
               return Image.asset(
                   'assets/images/icons/payment_notfound_icon.png',
                   );

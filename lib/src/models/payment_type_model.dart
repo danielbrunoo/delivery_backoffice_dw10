@@ -27,7 +27,7 @@ class PaymentTypeModel {
       id: map['id'] != null ? map['id'] as int : null,
       name: map['name'] as String,
       acronym: map['acronym'] as String,
-      enable: map['enable'] as bool,
+      enable: map['enabled'] as bool,
     );
   }
 
