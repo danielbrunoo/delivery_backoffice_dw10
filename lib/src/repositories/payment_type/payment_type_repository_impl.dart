@@ -9,6 +9,8 @@ import './payment_type_repository.dart';
 
 class PaymentTypeRepositoryImpl implements PaymentTypeRepository {
   late final CustomDio _dio;
+
+  PaymentTypeRepositoryImpl(Object object);
   @override
   Future<List<PaymentTypeModel>> findAll(bool? enabled) async {
     try {
@@ -48,12 +50,12 @@ class PaymentTypeRepositoryImpl implements PaymentTypeRepository {
 
       if (model.id != null) {
         await client.put(
-          '/payment-type/${model.id}',
+          '/payment-types/${model.id}',
           data: model.toMap(),
         );
       } else {
         await client.post(
-          '/payment-type/',
+          '/payment-types/',
           data: model.toMap(),
         );
       }
