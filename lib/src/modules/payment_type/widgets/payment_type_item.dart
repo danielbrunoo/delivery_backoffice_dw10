@@ -10,22 +10,25 @@ class PaymentTypeItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorAll = payment.enabled ? Colors.black : Colors.grey;
+
     return Container(
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(20.0),
         child: Row(
           children: [
             Image.asset(
-                'assets/images/icons/payment_${payment.acronym}_icon.png',
-                errorBuilder: (context, error, stackTrace) {
-              return Image.asset(
+              'assets/images/icons/payment_${payment.acronym.toLowerCase()}_icon.png',
+              errorBuilder: (context, error, stackTrace) {
+                return Image.asset(
                   'assets/images/icons/payment_notfound_icon.png',
-                  );
-            },
+                );
+              },
+              color: colorAll,
             ),
             const SizedBox(
               width: 20,
