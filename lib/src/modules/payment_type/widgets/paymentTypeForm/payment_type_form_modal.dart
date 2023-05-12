@@ -111,7 +111,6 @@ class _PaymentTypeFormModalState extends State<PaymentTypeFormModal> {
                     onChanged: (value) {
                       setState(() {
                         enabled = value;
-                        print(value);
                       });
                     },
                   ),
