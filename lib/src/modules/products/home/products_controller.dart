@@ -30,14 +30,20 @@ abstract class ProductsControllerBase with Store {
   String? _filterName;
 
   @action
-  void loadProducts() async {
+  Future<void> filterByName(String name) async {
+    _filterName = name;
+    await loadProducts();
+  }
+
+  @action
+  Future<void> loadProducts() async {
     try {
-  _status = ProductStateStatus.loading;
-  _products = await _productRepository.findAll(_filterName);
-  _status = ProductStateStatus.loaded;
-} catch (e, s) {
-  log('Erro ao buscar produtos', error: e, stackTrace: s);
-  _status = ProductStateStatus.error;
-}
+      _status = ProductStateStatus.loading;
+      _products = await _productRepository.findAll(_filterName);
+      _status = ProductStateStatus.loaded;
+    } catch (e, s) {
+      log('Erro ao buscar produtos', error: e, stackTrace: s);
+      _status = ProductStateStatus.error;
+    }
   }
 }

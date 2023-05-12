@@ -38,10 +38,15 @@ class ProductItem extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(15.0),
+                child: Tooltip(
+                message: product.name,
                 child: Text(
-                  'X-tudão',
+                  product.name,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: context.textStyles.textMedium,
                 ),
+              ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -49,7 +54,7 @@ class ProductItem extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Text(
-                      100.50.currencyPTBR,
+                      product.price.currencyPTBR,
                     ),
                   ),
                   TextButton(
