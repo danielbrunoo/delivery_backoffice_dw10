@@ -1,7 +1,7 @@
 import 'package:dio/browser.dart';
 import 'package:dio/dio.dart';
 
-import '../../env/env.dart';
+import '../env/env.dart';
 import '../storage/storage.dart';
 import 'interceptors/auth_interceptor.dart';
 
