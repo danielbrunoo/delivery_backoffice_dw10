@@ -1,10 +1,12 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import '../../../core/env/env.dart';
 import '../../../core/ui/helpers/size_extensions.dart';
 import '../../../core/ui/styles/text_styles.dart';
+import 'product_detail_controller.dart';
 
 class ProductDetailPage extends StatefulWidget {
   final int? productId;
@@ -16,6 +18,8 @@ class ProductDetailPage extends StatefulWidget {
 }
 
 class _ProductDetailPageState extends State<ProductDetailPage> {
+  final controller = Modular.get<ProductDetailController>();
+
   @override
   Widget build(BuildContext context) {
     final widthButtonAction = context.percentWidth(.4);
@@ -54,12 +58,20 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   Stack(
                     alignment: Alignment.bottomCenter,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Image.network(
-                          '${Env.instance.get('backend_base_url')}/storage/mclumygt_jrs_1682022574279.jpg',
-                          width: 200,
-                        ),
+                      Observer(
+                        builder: (_) {
+                          if (controller.imagePath != null) {
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Image.network(
+                                '${Env.instance.get('bakcend_base_url')}${controller.imagePath}',
+                                width: 200,
+                              ),
+                            );
+                          }
+                            return const SizedBox.shrink();
+                        
+                        },
                       ),
                       Container(
                         margin: const EdgeInsets.all(10),
@@ -147,7 +159,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                         width: widthButtonAction / 2,
                         height: 60,
                         child: ElevatedButton(
-                        onPressed: () {},
+                          onPressed: () {},
                           child: Text(
                             'Salvar',
                             style: context.textStyles.textBold,
