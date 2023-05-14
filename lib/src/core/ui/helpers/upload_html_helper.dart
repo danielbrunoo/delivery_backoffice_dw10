@@ -13,7 +13,7 @@ class UploadHtmlHelper {
   }
 
   void handleFileUpload(
-      FileUploadInputElement uploadInput, UploadCallback callback) {
+      FileUploadInputElement uploadInput, UploadCallback callback,) {
     final files = uploadInput.files;
     if (files != null && files.isNotEmpty) {
       final file = files.first;

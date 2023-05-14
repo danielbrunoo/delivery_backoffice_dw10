@@ -5,6 +5,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import '../../../core/env/env.dart';
 import '../../../core/ui/helpers/size_extensions.dart';
+import '../../../core/ui/helpers/upload_html_helper.dart';
 import '../../../core/ui/styles/text_styles.dart';
 import 'product_detail_controller.dart';
 
@@ -69,21 +70,26 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                               ),
                             );
                           }
-                            return const SizedBox.shrink();
-                        
+                          return const SizedBox.shrink();
                         },
                       ),
                       Container(
                         margin: const EdgeInsets.all(10),
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            UploadHtmlHelper().startUpload(
+                              controller.uploadImageProduct,
+                            );
+                          },
                           style: TextButton.styleFrom(
-                            backgroundColor: Colors.white.withOpacity(
-                              0.9,
-                            ),
+                            backgroundColor: Colors.white.withOpacity(0.9),
                           ),
-                          child: const Text(
-                            'Adicionar foto',
+                          child: Observer(
+                            builder: (_) {
+                              return  Text(
+                        '${controller.imagePath == null ? 'Adicionar' : 'Alterar'} Foto',
+                          );
+                              },
                           ),
                         ),
                       )

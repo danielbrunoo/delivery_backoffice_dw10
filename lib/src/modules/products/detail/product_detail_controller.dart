@@ -1,5 +1,5 @@
+import 'dart:typed_data';
 import 'package:mobx/mobx.dart';
-
 import '../../../repositories/products/product_repository.dart';
 part 'product_detail_controller.g.dart';
 
@@ -29,4 +29,11 @@ abstract class ProductDetailControllerBase with Store {
   String? _imagePath;
 
   ProductDetailControllerBase(this._productRepository);
+
+  @action
+  Future<void> uploadImageProduct(Uint8List file, String fileName) async {
+    _status = ProductDetailStateStatus.loading;
+    _imagePath = await _productRepository.uploadImageProduct(file, fileName);
+    _status = ProductDetailStateStatus.uploaded;
+  }
 }
