@@ -150,8 +150,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                           style: OutlinedButton.styleFrom(
                             side: const BorderSide(
                               color: Colors.red,
-                            ),
-                          ),
+                            ),),
                           onPressed: () {},
                           child: Text(
                             'Deletar',
