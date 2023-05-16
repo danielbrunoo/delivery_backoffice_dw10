@@ -275,13 +275,13 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                             if (valid) {
                               if (controller.imagePath == null) {
                                 showWarning(
-                                    'Imagem obrigatória! Por favor, clique em adicionar foto.');
+                                    'Imagem obrigatória! Por favor, clique em adicionar foto.',);
                                 return;
                               }
                               controller.save(
                                 nameEC.text,
                                 UtilBrasilFields.converterMoedaParaDouble(
-                                    priceEC.text),
+                                    priceEC.text,),
                                 descriptionEC.text,
                               );
                             }
