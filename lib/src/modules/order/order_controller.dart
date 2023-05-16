@@ -56,5 +56,6 @@ abstract class OrderControllerBase with Store {
   Future<void> showDetailModal(OrderModel mode) async {
     _status = OrderStateStatus.loading;
     await Future.delayed(Duration.zero);
+    _status = OrderStateStatus.showDetailModal;
   }
 }
