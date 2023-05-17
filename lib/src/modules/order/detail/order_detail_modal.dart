@@ -75,14 +75,14 @@ class _OrderDetailModalState extends State<OrderDetailModal> {
                       height: 20,
                     ),
                     Text(
-                      'Daniel Bruno',
+                      widget.order.user.name,
                       style: context.textStyles.textRegular,
                     ),
                   ],
                 ),
                 const Divider(),
-                ...List.generate(3, (index) => index)
-                    .map((e) => const OrderProductItem())
+                ...widget.order.orderProducts
+                    .map((op) => OrderProductItem(orderProduct: op))
                     .toList(),
                 const SizedBox(
                   height: 10,
@@ -98,7 +98,11 @@ class _OrderDetailModalState extends State<OrderDetailModal> {
                             .copyWith(fontSize: 18),
                       ),
                       Text(
-                        200.0.currencyPTBR,
+                        widget.order.orderProducts
+                        .fold<double>(
+                          00, (previousValue, p) =>
+                          previousValue + p.totalPrice,
+                          ).currencyPTBR,
                         style: context.textStyles.textExtraBold
                             .copyWith(fontSize: 18),
                       ),
@@ -106,14 +110,14 @@ class _OrderDetailModalState extends State<OrderDetailModal> {
                   ),
                 ),
                 const Divider(),
-                const OrderInfoTile(
+                OrderInfoTile(
                   label: 'Endereço de entrega: ',
-                  info: 'Av. Paulista, 200',
+                  info: widget.order.address,
                 ),
                 const Divider(),
-                const OrderInfoTile(
+                OrderInfoTile(
                   label: 'Forma de pagamento: ',
-                  info: 'Cartão de crédito',
+                  info: widget.order.paymentTypeModel.name,
                 ),
                 const SizedBox(
                   height: 10,
